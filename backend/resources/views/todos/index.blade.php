@@ -5,7 +5,13 @@
         <meta charset="UTF-8">
         <meta name="viewpot" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-</head>
+    </head>
+    <style>
+        input:disabled {
+            background: none;
+            border: none;
+        }
+    </style>
 <body>
     <div id="todo_index" class="container" style="margin-top :50px;">
         <h1>Todoリストの追加</h1>
@@ -20,11 +26,11 @@
 
         <tbody>
             <tr v-for="(todo, index) in todos" :key="todo">
-                <td>@{{todo.body}}</td>
+                <td><input type="text" v-model="todo.body" :disabled="todo.editFlag"></td>
                 <td>
-                    <form :action="`/todo/${todo.id}`" method="get">
-                        <button class="btn btn-primary">編集</button>
-                    </form>
+                    <button class="btn btn-primary" @click="editTodo(todo, index)" v-if="todo.editFlag">編集</button>
+                    
+                    <button class="btn btn-primary" v-else @click="editComplete(todo, index)">完了</button>
                 </td>
                 <td>
                     <button class="btn btn-danger" @click="DeleteTodo(todo.id, index)">削除</button>

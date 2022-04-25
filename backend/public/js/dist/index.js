@@ -19921,6 +19921,28 @@ __webpack_require__.r(__webpack_exports__);
 
         _this3.getTodo();
       });
+    },
+    editTodo: function editTodo(todo, index) {
+      this.todos.splice(index, 1, {
+        id: todo.id,
+        body: todo.body,
+        editFlag: false
+      });
+    },
+    editComplete: function editComplete(todo, index) {
+      var _this4 = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default().post("/todo/update/".concat(todo.id), {
+        body: todo.body
+      }).then(function () {
+        _this4.todos.splice(index, 1, {
+          id: todo.id,
+          body: todo.body,
+          editFlag: true
+        });
+
+        _this4.getTodo();
+      });
     }
   },
   mounted: function mounted() {

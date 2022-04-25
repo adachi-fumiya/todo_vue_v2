@@ -36,6 +36,25 @@ createApp({
                 this.todos.splice(index, 1);
                 this.getTodo();
             })
+        },
+        editTodo(todo, index) {
+            this.todos.splice(index, 1, {
+                id: todo.id,
+                body: todo.body,
+                editFlag: false
+            })
+        },
+        editComplete(todo, index) {
+            axios.post(`/todo/update/${todo.id}`, {
+                body: todo.body
+            }).then(() => {
+                this.todos.splice(index, 1, {
+                    id: todo.id,
+                    body: todo.body,
+                    editFlag: true
+                })
+                this.getTodo();
+            })
         }
     },
     mounted() {

@@ -22,10 +22,7 @@ class TodosController extends Controller
     }
 
     public function update($id, Request $request) {
-        $todo = Todo::find($id);
-        $todo->body = $request->body;
-        $todo->save();
-        return redirect(route('todos.index'));
+        Todo::find($id)->update($request->all());
     }
 
     public function delete($id) {
