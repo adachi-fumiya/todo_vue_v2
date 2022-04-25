@@ -16,11 +16,6 @@ class TodosController extends Controller
         Todo::create($request->all());
     }
 
-    public function edit($id) {
-        $todo = Todo::find($id);
-        return view('todos.edit', compact('todo'));
-    }
-
     public function update($id, Request $request) {
         Todo::find($id)->update($request->all());
     }

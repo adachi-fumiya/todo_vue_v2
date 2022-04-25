@@ -11,9 +11,6 @@ Vue.createApp({
     };
   },
   methods: {
-    onClick: function onClick() {
-      this.counter += 1;
-    },
     getTodo: function getTodo() {
       var _this = this;
 

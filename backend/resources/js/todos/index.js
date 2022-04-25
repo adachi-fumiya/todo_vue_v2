@@ -6,9 +6,6 @@ Vue.createApp({
         };
     },
     methods: {
-        onClick() {
-            this.counter += 1;
-        },
         getTodo() {
             axios.get('/todo/info')
             .then((res) => {
