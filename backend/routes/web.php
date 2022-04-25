@@ -23,5 +23,6 @@ Route::controller(TodosController::class)->prefix('todo')->group(function () {
     Route::post('store', 'store')->name('todos.store');
     Route::post('update/{id}', 'update')->name('todos.update');
     Route::post('delete/{id}', 'delete')->name('todos.delete');
+    Route::get('info', 'info')->name('todos.info');
     Route::get('{id}', 'edit')->name('todos.edit');
 });

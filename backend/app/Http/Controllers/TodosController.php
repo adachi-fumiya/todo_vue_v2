@@ -13,10 +13,7 @@ class TodosController extends Controller
     }
 
     public function store(Request $request) {
-        $todo = new Todo();
-        $todo->body = $request->body;
-        $todo->save();
-        return redirect(route('todos.index'));
+        Todo::create($request->all());
     }
 
     public function edit($id) {
@@ -24,7 +21,7 @@ class TodosController extends Controller
         return view('todos.edit', compact('todo'));
     }
 
-    public function update(Request $request, $id) {
+    public function update($id, Request $request) {
         $todo = Todo::find($id);
         $todo->body = $request->body;
         $todo->save();
@@ -34,5 +31,10 @@ class TodosController extends Controller
     public function delete($id) {
         Todo::find($id)->delete();
         return redirect(route('todos.index'));
+    }
+
+    public function info() {
+        $todos = Todo::all();
+        return response()->json($todos);
     }
 }
