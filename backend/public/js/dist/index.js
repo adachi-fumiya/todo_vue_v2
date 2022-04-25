@@ -19895,7 +19895,6 @@ __webpack_require__.r(__webpack_exports__);
 
       axios__WEBPACK_IMPORTED_MODULE_0___default().get('/todo/info').then(function (res) {
         _this.todos = res.data;
-        console.log(_this.todos);
       });
     },
     addTodo: function addTodo() {
@@ -19910,11 +19909,21 @@ __webpack_require__.r(__webpack_exports__);
         });
 
         _this2.inputTodo = '';
+
+        _this2.getTodo();
+      });
+    },
+    DeleteTodo: function DeleteTodo(todoId, index) {
+      var _this3 = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default().post("/todo/delete/".concat(todoId)).then(function (res) {
+        _this3.todos.splice(index, 1);
+
+        _this3.getTodo();
       });
     }
   },
   mounted: function mounted() {
-    console.log('hello');
     this.getTodo();
   }
 }).mount("#todo_index");

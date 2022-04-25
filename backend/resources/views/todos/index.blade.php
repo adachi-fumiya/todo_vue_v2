@@ -19,12 +19,15 @@
         <table class="table table-striped" style="max-width:1000px; margin-top:20px;">
 
         <tbody>
-            <tr v-for="todo in todos" :key="todo">
+            <tr v-for="(todo, index) in todos" :key="todo">
                 <td>@{{todo.body}}</td>
                 <td>
                     <form :action="`/todo/${todo.id}`" method="get">
-                        <button type="submit" class="btn btn-primary">編集</button>
+                        <button class="btn btn-primary">編集</button>
                     </form>
+                </td>
+                <td>
+                    <button class="btn btn-danger" @click="DeleteTodo(todo.id, index)">削除</button>
                 </td>
             </tr>
         </table>

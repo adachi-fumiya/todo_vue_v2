@@ -30,7 +30,6 @@ class TodosController extends Controller
 
     public function delete($id) {
         Todo::find($id)->delete();
-        return redirect(route('todos.index'));
     }
 
     public function info() {
