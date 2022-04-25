@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TodosController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +18,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/test', function() {
-    return view('test');
+Route::controller(TodosController::class)->prefix('todo')->group(function () {
+    Route::get('/', 'index')->name('todos.index');
+    Route::post('store', 'store')->name('todos.store');
+    Route::post('update/{id}', 'update')->name('todos.update');
+    Route::post('delete/{id}', 'delete')->name('todos.delete');
+    Route::get('{id}', 'edit')->name('todos.edit');
 });
