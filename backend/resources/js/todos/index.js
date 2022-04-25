@@ -23,11 +23,11 @@ createApp({
                 body: this.inputTodo
             }).then(res => {
                 this.todos.push({
-                    key: Math.random() * 1000000,
-                    body: this.inputTodo
+                    body: this.inputTodo,
+                    editFlag: true
                 });
                 this.inputTodo = '';
-                this.getTodo();
+                this.getTodo();    
             })
         },
         DeleteTodo(todoId, index) {
