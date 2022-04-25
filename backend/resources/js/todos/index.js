@@ -1,7 +1,4 @@
-import axios from "axios";
-import { createApp } from "vue";
-
-createApp({
+Vue.createApp({
     data() {
         return {
             todos: [],
